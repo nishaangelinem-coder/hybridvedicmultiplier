@@ -1,0 +1,84 @@
+*=============================================================================
+* File: ptm_45nm.lib
+* Description: Predictive Technology Model (PTM) — 45nm CMOS
+*              Compatible with HSPICE / Cadence Spectre / LTspice / ngspice
+* Reference:   Technology node used in paper (Section 4.3)
+*              "Technology: 45nm CMOS" — schematic annotations
+* Source:      Based on Arizona State University PTM models
+*              http://ptm.asu.edu/
+*=============================================================================
+
+* ── Global Parameters ──
+.param supply = 1.0         $ VDD = 1.0V for 45nm
+.param lmin   = 45n         $ Minimum channel length
+.param wn     = 120n        $ Default NMOS width
+.param wp     = 240n        $ Default PMOS width (2× NMOS for balanced drive)
+.param temp   = 27          $ Room temperature
+
+* ══════════════════════════════════════════════════════════════════════════════
+*  NMOS Transistor Model — 45nm Low-Power
+* ══════════════════════════════════════════════════════════════════════════════
+.model nmos_45n nmos level=54 version=4.5
++ tnom    = 27           toxe    = 1.8e-009     toxp    = 1.5e-009
++ toxm    = 1.8e-009     dtox    = 3e-010       epsrox  = 3.9
++ wint    = 5e-009       lint    = 0
++ vth0    = 0.423        k1      = 0.54         k2      = -0.09
++ k3      = 80           dvt0    = 1            dvt1    = 2
++ dvt2    = -0.032       nlx     = 3.5e-008     w0      = 0
++ k3b     = 0.4          vsat    = 1.5e+005     ua      = -1.38e-009
++ ub      = 2.56e-018    uc      = -4.65e-011   rdsw    = 155
++ prwb    = -0.2         prwg    = 0.5          wr      = 1
++ u0      = 330          a0      = 1            ags     = 0.2
++ a1      = 0            a2      = 1            b0      = 0
++ b1      = 0            voff    = -0.12        nfactor = 2.1
++ cit     = 0            cdsc    = 0            cdscb   = 0
++ cdscd   = 0            eta0    = 0.04         etab    = -0.07
++ dsub    = 0.56         pclm    = 0.1          pdiblc1 = 0.001
++ pdiblc2 = 0.003        pdiblcb = -0.1         drout   = 0.56
++ pscbe1  = 8.14e+008    pscbe2  = 1e-006       pvag    = 0.01
++ delta   = 0.01         alpha0  = 7.5e-008     beta0   = 30
++ kt1     = -0.11        kt1l    = 0            kt2     = 0.022
++ ute     = -1.5         ua1     = 4.31e-009    ub1     = -7.61e-018
++ uc1     = -5.6e-011    at      = 3.3e+004     prt     = 0
++ njs     = 1            njd     = 1            xtis    = 3
++ tpb     = 0.005        tpbsw   = 0.005        tpbswg  = 0.005
++ tcj     = 0.001        tcjsw   = 0.001        tcjswg  = 0.001
++ cgso    = 1.6e-010     cgdo    = 1.6e-010     cgbo    = 0
++ cgsl    = 0            cgdl    = 0            ckappas = 0.6
++ ckappad = 0.6          cf      = 0            clc     = 1e-007
++ cle     = 0.6          dlc     = 1e-009       dwc     = 0
++ xj      = 1.4e-008     ngate   = 1e+023
+
+* ══════════════════════════════════════════════════════════════════════════════
+*  PMOS Transistor Model — 45nm Low-Power
+* ══════════════════════════════════════════════════════════════════════════════
+.model pmos_45n pmos level=54 version=4.5
++ tnom    = 27           toxe    = 1.9e-009     toxp    = 1.5e-009
++ toxm    = 1.9e-009     dtox    = 4e-010       epsrox  = 3.9
++ wint    = 5e-009       lint    = 0
++ vth0    = -0.365       k1      = 0.55         k2      = -0.09
++ k3      = 80           dvt0    = 1            dvt1    = 2
++ dvt2    = -0.032       nlx     = 3.5e-008     w0      = 0
++ k3b     = 0.4          vsat    = 1.3e+005     ua      = -1.4e-009
++ ub      = 2.32e-018    uc      = -4.65e-011   rdsw    = 320
++ prwb    = -0.2         prwg    = 0.5          wr      = 1
++ u0      = 80           a0      = 1            ags     = 0.2
++ a1      = 0            a2      = 1            b0      = 0
++ b1      = 0            voff    = -0.12        nfactor = 2.1
++ cit     = 0            cdsc    = 0            cdscb   = 0
++ cdscd   = 0            eta0    = 0.04         etab    = -0.07
++ dsub    = 0.56         pclm    = 0.1          pdiblc1 = 0.001
++ pdiblc2 = 0.003        pdiblcb = -0.1         drout   = 0.56
++ pscbe1  = 8.14e+008    pscbe2  = 1e-006       pvag    = 0.01
++ delta   = 0.01         alpha0  = 7.5e-008     beta0   = 30
++ kt1     = -0.11        kt1l    = 0            kt2     = 0.022
++ ute     = -1.5         ua1     = 4.31e-009    ub1     = -7.61e-018
++ uc1     = -5.6e-011    at      = 3.3e+004     prt     = 0
++ njs     = 1            njd     = 1            xtis    = 3
++ tpb     = 0.005        tpbsw   = 0.005        tpbswg  = 0.005
++ tcj     = 0.001        tcjsw   = 0.001        tcjswg  = 0.001
++ cgso    = 1.6e-010     cgdo    = 1.6e-010     cgbo    = 0
++ cgsl    = 0            cgdl    = 0            ckappas = 0.6
++ ckappad = 0.6          cf      = 0            clc     = 1e-007
++ cle     = 0.6          dlc     = 1e-009       dwc     = 0
++ xj      = 1.4e-008     ngate   = 1e+023
